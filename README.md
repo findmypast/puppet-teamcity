@@ -71,11 +71,18 @@ Also note that the agent names (`myagent`, `myotheragent`, ...) must be unique a
 
 Most of the parameters should be pretty self-explanatory, if not you probably should not use them for now.
 
+## Development
 
-## NEWS
+If you update this module, please run the following commands to deploy your changes.
 
-### v0.5.0, 2016-06-27
+First, update the installed modules on the puppet master:
 
-- added LDAP configuration support
-- made archive provider configurable (puppet/archive, camptocamp/archive)
+```
+sudo r10k puppetfile install
+```
 
+Then, on the affected Teamcity server host:
+
+```
+sudo puppet agent -t
+```
