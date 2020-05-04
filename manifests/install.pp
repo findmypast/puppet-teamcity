@@ -21,10 +21,6 @@ class teamcity::install inherits teamcity::params  {
     ensure => '8u77-b03-3ubuntu3',
   }
 
-  package { 'openjdk-8-jdk':
-    ensure => '8u77-b03-3ubuntu3',
-  }
-
   package { 'openjdk-8-jre-headless':
     ensure => '8u77-b03-3ubuntu3',
   }
