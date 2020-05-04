@@ -17,8 +17,12 @@ class teamcity::install inherits teamcity::params  {
   $use_download_url = regsubst($teamcity_base_url, '%%%VERSION%%%', $teamcity_version)
   $use_target_dir   = "/opt/teamcity-${teamcity_version}"
 
+  class { 'java':
+    version => '8u77-b03-3ubuntu3'
+  }
+
   include wget
-  include java
+  # include java
   include systemd
   include teamcity::prepare
 
