@@ -17,7 +17,19 @@ class teamcity::install inherits teamcity::params  {
   $use_download_url = regsubst($teamcity_base_url, '%%%VERSION%%%', $teamcity_version)
   $use_target_dir   = "/opt/teamcity-${teamcity_version}"
 
+  package { 'openjdk-8-jdk-headless':
+    ensure => '8u77-b03-3ubuntu3',
+  }
+
+  package { 'openjdk-8-jdk':
+    ensure => '8u77-b03-3ubuntu3',
+  }
+
   package { 'openjdk-8-jre-headless':
+    ensure => '8u77-b03-3ubuntu3',
+  }
+
+  package { 'openjdk-8-jre':
     ensure => '8u77-b03-3ubuntu3',
   }
 
