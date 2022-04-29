@@ -33,17 +33,9 @@ class teamcity::install inherits teamcity::params  {
     ensure => '11.0.14+9-0ubuntu2~16.04',
   }
 
-  class { 'java':
-    version => '11.0.14+9-0ubuntu2~16.04'
-  }
-
   include wget
-  # include java
   include systemd
   include teamcity::prepare
-
-  Class['java'] -> Group['teamcity']
-
 
   file { "/opt/teamcity-${teamcity_version}":
     ensure  => 'directory',
