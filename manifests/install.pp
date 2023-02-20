@@ -22,15 +22,15 @@ class teamcity::install inherits teamcity::params  {
   apt::ppa { 'ppa:openjdk-r/ppa': }
 
   package { 'openjdk-11-jdk-headless':
-    ensure => "11.0.14+9-0ubuntu2~${::lsbdistrelease}",
+    ensure => $teamcity::params::openjdk_11_jdk_headless,
   }
 
   package { 'openjdk-11-jre-headless':
-    ensure => "11.0.14+9-0ubuntu2~${::lsbdistrelease}",
+    ensure => $teamcity::params::openjdk_11_jre_headless,
   }
 
   package { 'openjdk-11-jre':
-    ensure => "11.0.14+9-0ubuntu2~${::lsbdistrelease}",
+    ensure => $teamcity::params::openjdk_11_jre,
   }
 
   include wget
