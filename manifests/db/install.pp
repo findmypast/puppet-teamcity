@@ -32,11 +32,7 @@ class teamcity::db::install inherits ::teamcity::params {
 
   # go
 
-  file {"${teamcity_data_path}/lib/jdbc":
-    owner => teamcity,
-    group => teamcity,
-    ensure => directory
-  } ->
+  File["${teamcity_data_path}/lib/jdbc"] ->
 
   wget::fetch { $use_jdbc_download_url:
     destination => "${teamcity_data_path}/lib/jdbc/${jdbc_filename}",
