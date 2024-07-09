@@ -1,5 +1,4 @@
 class teamcity::db::install inherits ::teamcity::params {
-
   $db_type                        = $::teamcity::params::db_type
 
   # for the template!
@@ -16,7 +15,6 @@ class teamcity::db::install inherits ::teamcity::params {
   $jdbc_download_url              = $::teamcity::params::jdbc_download_url
   $teamcity_data_path             = $::teamcity::params::teamcity_data_path
 
-
   # variable definitions
 
   $use_jdbc_download_url = $jdbc_download_url ? {
@@ -29,16 +27,13 @@ class teamcity::db::install inherits ::teamcity::params {
   $tmp              = split($use_jdbc_download_url, "[/\\\\]")
   $jdbc_filename    = $tmp[-1]
 
-
   # go
 
-  File["${teamcity_data_path}/lib/jdbc"] ->
-
-  wget::fetch { $use_jdbc_download_url:
-    destination => "${teamcity_data_path}/lib/jdbc/${jdbc_filename}",
-    user        => 'teamcity',
-  } ~>
-
-  Service['teamcity']
-
+  File["${teamcity_data_path}/lib/jdbc"]
+  -> archive { "${teamcity_data_path}/lib/jdbc/${jdbc_filename}":
+    provider => 'wget',
+    source   => $use_jdbc_download_url,
+    user     => 'teamcity',
+    group    => 'teamcity',
+  } ~> Service['teamcity']
 }
