@@ -35,5 +35,8 @@ class teamcity::db::install inherits ::teamcity::params {
     source   => $use_jdbc_download_url,
     user     => 'teamcity',
     group    => 'teamcity',
+  } -> file { "${teamcity_data_path}/lib/jdbc/${jdbc_filename}":
+    owner => 'teamcity',
+    group => 'teamcity',
   } ~> Service['teamcity']
 }
