@@ -1,3 +1,4 @@
+# !!!! WE DO NOT USE THE AGENT CLASS IN Findmypast's puppet repo!!!!
 define teamcity::agent (
   $agent_name = $title,
   $master_url = undef,
