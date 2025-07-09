@@ -33,22 +33,6 @@ class teamcity::install inherits teamcity::params  {
     ensure => $teamcity::params::openjdk_11_jre,
   }
 
-  if $teamcity::params::openjdk_21_jdk_headless != undef
-  and $teamcity::params::openjdk_21_jre_headless != undef
-  and $teamcity::params::openjdk_21_jre != undef {
-    package { 'openjdk-21-jdk-headless':
-      ensure => $teamcity::params::openjdk_21_jdk_headless,
-    }
-
-    package { 'openjdk-21-jre-headless':
-      ensure => $teamcity::params::openjdk_21_jre_headless,
-    }
-
-    package { 'openjdk-21-jre':
-      ensure => $teamcity::params::openjdk_21_jre,
-    }
-  }
-
   include wget
   include systemd
   include teamcity::prepare
