@@ -17,10 +17,14 @@ class teamcity::params (
   $teamcity_version               = '9.1.3',
   $teamcity_base_url              = 'http://download.jetbrains.com/teamcity/TeamCity-%%%VERSION%%%.tar.gz',
   $teamcity_download_timeout      = 180,
-  
+
   $openjdk_11_jdk_headless        = 'latest',
   $openjdk_11_jre_headless        = 'latest',
   $openjdk_11_jre                 = 'latest',
+
+  $openjdk_21_jdk_headless        = 'latest',
+  $openjdk_21_jre_headless        = 'latest',
+  $openjdk_21_jre                 = 'latest',
 
   $teamcity_server_mem_opts       = undef,
 
