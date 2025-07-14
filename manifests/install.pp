@@ -21,18 +21,6 @@ class teamcity::install inherits teamcity::params  {
 
   apt::ppa { 'ppa:openjdk-r/ppa': }
 
-  package { 'openjdk-11-jdk-headless':
-    ensure => 'absent',
-  }
-
-  package { 'openjdk-11-jre-headless':
-    ensure => 'absent',
-  }
-
-  package { 'openjdk-11-jre':
-    ensure => 'absent',
-  }
-
   package { 'openjdk-21-jdk-headless':
     ensure => $teamcity::params::openjdk_21_jdk_headless,
   }
