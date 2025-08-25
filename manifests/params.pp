@@ -24,7 +24,7 @@ class teamcity::params (
 
   $teamcity_server_mem_opts       = undef,
 
-  Regexp[/^(local|ldap)$/] $authentication                 = 'local',
+  $authentication                 = 'local',
   $ldap_configuration             = undef,
 
   $add_agent_sudo                 = false,
@@ -48,10 +48,18 @@ class teamcity::params (
   $teamcity_data_path             = '/var/lib/teamcity',
   $teamcity_logs_path             = '/opt/teamcity/logs',
 
-  Regexp[/^(camptocamp|puppet)$/] $archive_provider               = 'camptocamp',
+  $archive_provider               = 'camptocamp',
 
 ) {
+  if $authentication !~ /^(local|ldap)$/ {
+    fail ("profiles::teamcity_master::authentication must be one of 'local' or 'ldap'")
+  }
+
   if $authentication == 'ldap' and $ldap_configuration == undef {
     fail('profiles::teamcity_master: if authentication is LDAP you have to provide $ldap_configuration')
+  }
+
+  if $archive_provider !~ /^(camptocamp|puppet)$/ {
+    fail "teamcity::params::archive_provider must be one of 'camptocamp'/'puppet'"
   }
 }
