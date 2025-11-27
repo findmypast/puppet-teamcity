@@ -1,5 +1,8 @@
 # puppet-teamcity
 
+> [!WARNING]
+> This repository has been deprecated, and all code moved to our main [puppet repository](https://github.com/findmypast/puppet/blob/master/code/modules/teamcity).
+
 A module which installs JetBrains' TeamCity or agent on a server.
 
 The Teamcity installation id done by downloading the files from JetBrains. The agent installation is done by downloading the files directly from the working TeamCity server, so the agent installation will fail as long as the server is not running (precisely: the buildAgent.zip file cannotm be downloaded from the TC server).
